@@ -6,14 +6,44 @@ import Table from './Table';
 import Chart from './Chart';
 import calculate from './calculations';
 
-const defaultOverpayment = { month: '1', year: '0', amount: '0' };
+import {
+  useQuery,
+  gql
+} from "@apollo/client";
 
+const defaultOverpayment = { month: '1', year: '0', amount: '0' };
+const defaultLocale = 'en-US';
+
+function Localized({id, locale}) {
+  const getTranslationQuery = gql`
+    query($key: String!, $locale: String!) {
+      translation(key: $key, locale: $locale) {
+        text
+      }
+    }
+  `
+  const variables = {
+    key: id,
+    locale: locale
+  };
+  const { loading, error, data } = useQuery(getTranslationQuery, { variables });
+
+  if (loading) return <p></p>;
+  if (error) return <p>#{id}</p>;
+
+    return (
+      <span>
+        { data.translation.text } 
+      </span>
+      );
+}
 export default () => {
   const [initial, setInitial] = useState('200000');
   const [rate, setRate] = useState('5');
   const [years, setYears] = useState('25');
   const [monthlyOverpayment, setMonthlyOverpayment] = useState('0');
   const [overpayments, setOverpayments] = useState([defaultOverpayment]);
+    const [locale, setLocale] = useState(defaultLocale);
 
   const updateOverpayment = index => ({ target }) =>
     setOverpayments(
@@ -36,7 +66,17 @@ export default () => {
     <div>
       <nav className="navbar navbar-default">
         <div className="navbar-header">
-          <div className="navbar-brand">Mortgage Overpayment Calculator</div>
+          <div className="navbar-brand"><Localized id={"app_name"} locale={locale}/></div>
+          <div className="navbar-locale">
+            <select 
+              value={locale}
+              onChange={e => setLocale(e.target.value)}
+              className="locale-select"
+            >
+              <option className="locale-select-option" value="en-US">en-US</option>
+              <option value="pt-BR">pt-BR</option>
+            </select>
+          </div>
         </div>
       </nav>
       <div className="container-fluid">

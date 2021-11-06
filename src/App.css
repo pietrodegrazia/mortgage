@@ -3,8 +3,30 @@
   margin-bottom: 10px;
 }
 
+.navbar .navbar-header {
+  width: 100%;
+  align-items: center;
+}
+
 .navbar .navbar-brand {
   color: #ffffff;
+}
+
+.navbar .navbar-locale {
+  color: #ffffff;
+  float: right;
+  height: 50px;
+  padding: 15px;
+  font-size: 12px;
+  line-height: 20px;
+}
+
+.locale-select {
+  color: #000000;
+}
+
+.locale-select-option {
+  color: #000000;
 }
 
 input,
