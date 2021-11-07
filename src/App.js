@@ -6,6 +6,7 @@ import Table from './Table';
 import Chart from './Chart';
 import calculate from './calculations';
 import Localized from './Localized';
+import LocaleSelector from './LocaleSelector';
 
 const defaultOverpayment = { month: '1', year: '0', amount: '0' };
 const defaultLocale =  navigator.language || navigator.userLanguage || 'en-US';
@@ -40,6 +41,11 @@ export default () => {
       <nav className="navbar navbar-default">
         <div className="navbar-header">
           <div className="navbar-brand"><Localized id={"app_name"} locale={locale}/></div>
+          <LocaleSelector 
+            options={['en-US', 'pt-BR']}
+            value={locale}
+            onChange={(e) => setLocale(e.target.value)}
+          />
         </div>
       </nav>
       <div className="container-fluid">

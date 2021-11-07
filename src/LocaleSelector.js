@@ -1,15 +1,16 @@
 import React from 'react';
 
-export default () => {
+export default (props) => {
   return (
     <div className="navbar-locale">
 	    <select
-	      value={locale}
-	      onChange={e => setLocale(e.target.value)}
+	      value={props.value}
+	      onChange={props.onChange}
 	      className="locale-select"
 	    >
-	      <option className="locale-select-option" value="en-US">en-US</option>
-	      <option value="pt-BR">pt-BR</option>
+	    	{props.options.map(function(option, index){
+         return (<option key={index} value={option}>{option}</option>)
+       	})}
 	  	</select>
 		</div>
 	);
