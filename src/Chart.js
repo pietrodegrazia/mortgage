@@ -1,8 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 
-import LocalizedString from './LocalizedString';
 import LocalizedCurrency from './LocalizedCurrency';
-
 
 import { select } from 'd3-selection';
 import { line } from 'd3-shape';
@@ -40,7 +38,7 @@ const Chart = ({ payments, locale }) => {
       .select('.x')
       .call(axisBottom(x).ticks(Math.min(payments.length, 30)));
 
-    chartEl.select('.y').call(axisLeft(y));
+    chartEl.select('.y').call(axisLeft(y).tickFormat(value => LocalizedCurrency({value, locale})));
 
     chartEl
       .select('.baseline')
