@@ -1,5 +1,9 @@
 import React, { useEffect, useRef } from 'react';
 
+import LocalizedString from './LocalizedString';
+import LocalizedCurrency from './LocalizedCurrency';
+
+
 import { select } from 'd3-selection';
 import { line } from 'd3-shape';
 import { scaleLinear } from 'd3-scale';
@@ -24,7 +28,7 @@ const baseline = line()
   .x((d, i) => x(i))
   .y(d => y(d.baseline));
 
-const Chart = ({ payments }) => {
+const Chart = ({ payments, locale }) => {
   const chart = useRef(null);
 
   useEffect(() => {

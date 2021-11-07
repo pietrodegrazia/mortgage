@@ -5,11 +5,12 @@ import './App.css';
 import Table from './Table';
 import Chart from './Chart';
 import calculate from './calculations';
-import Localized from './Localized';
+import LocalizedString from './LocalizedString';
+import LocalizedCurrency from './LocalizedCurrency';
 import LocaleSelector from './LocaleSelector';
 
 const defaultOverpayment = { month: '1', year: '0', amount: '0' };
-const defaultLocale =  navigator.language || navigator.userLanguage || 'en-US';
+const defaultLocale = navigator.language || navigator.userLanguage || 'en-US';
 
 const App = () => {
   const [initial, setInitial] = useState('200000');
@@ -40,7 +41,7 @@ const App = () => {
     <div>
       <nav className="navbar navbar-default">
         <div className="navbar-header">
-          <div className="navbar-brand"><Localized id={"app_name"} locale={locale}/></div>
+          <div className="navbar-brand">{<LocalizedString id="app_name" locale={locale}/>}</div>
           <LocaleSelector 
             options={['en-US', 'pt-BR']}
             value={locale}
@@ -52,8 +53,8 @@ const App = () => {
         <div className="col-md-8 col-sm-12">
           <div className="col-sm-4">
             <div>
-              <h2>Initial</h2>
-              <label>Amount</label>
+              <h2>{<LocalizedString id="initial_payment" locale={locale}/>}</h2>
+              <label>{<LocalizedString id="mortgage_amount" locale={locale}/>}</label>
               <input
                 maxLength={7}
                 value={initial}
@@ -61,7 +62,7 @@ const App = () => {
               />
             </div>
             <div>
-              <label>Years</label>
+              <label>{<LocalizedString id="mortgage_years" locale={locale}/>}</label>
               <input
                 type="number"
                 maxLength={2}
@@ -70,7 +71,7 @@ const App = () => {
               />
             </div>
             <div>
-              <label>Rate</label>
+              <label>{<LocalizedString id="mortgage_rate" locale={locale}/>}</label>
               <input
                 type="number"
                 step={0.1}
@@ -81,8 +82,8 @@ const App = () => {
           </div>
           <div className="col-sm-8">
             <div>
-              <h2>Overpayment</h2>
-              <label>Monthly</label>
+              <h2>{<LocalizedString id="overpayment" locale={locale}/>}</h2>
+              <label>{<LocalizedString id="monthly" locale={locale}/>}</label>
               <input
                 type="number"
                 maxLength={5}
@@ -91,9 +92,9 @@ const App = () => {
               />
             </div>
             <div>
-              <label>Year</label>
-              <label>Month</label>
-              <label>Amount</label>
+              <label>{<LocalizedString id="overpayment_year" locale={locale}/>}</label>
+              <label>{<LocalizedString id="overpayment_month" locale={locale}/>}</label>
+              <label>{<LocalizedString id="overpayment_amount" locale={locale}/>}</label>
             </div>
             {overpayments.map(({ year, month, amount }, i) => (
               <div key={i}>
@@ -144,15 +145,15 @@ const App = () => {
           </div>
           <div className="col-sm-12">
             <h2>
-              Monthly Payment
+              {<LocalizedString id="monthly_payment" locale={locale}/>}
               <span className="money">
-                {(+monthlyOverpayment + monthlyPayment).toFixed(2)}
+                {<LocalizedCurrency value={(+monthlyOverpayment + monthlyPayment)} locale={locale}/>}
               </span>
             </h2>
-            <Chart payments={payments} />
+            <Chart payments={payments} locale={locale} />
           </div>
         </div>
-        <Table className="col-sm-4" payments={payments} />
+        <Table className="col-sm-4" payments={payments} locale={locale} />
       </div>
     </div>
   );

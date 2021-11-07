@@ -3,7 +3,7 @@ import {
   gql
 } from "@apollo/client";
 
-const Localized = ({ id, locale }) => {
+const LocalizedString = ({ id, locale }) => {
   const getTranslationQuery = gql`
     query($key: String!, $locale: String!) {
       translation(key: $key, locale: $locale) {
@@ -18,7 +18,7 @@ const Localized = ({ id, locale }) => {
   const { loading, error, data } = useQuery(getTranslationQuery, { variables });
 
   if (loading) return <p></p>;
-  if (error) return <p>#{id}</p>;
+  if (error || !data.translation) return <p>#{id}</p>;
 
   return (
     <span>
@@ -27,4 +27,4 @@ const Localized = ({ id, locale }) => {
   );
 };
 
-export default Localized;
+export default LocalizedString;

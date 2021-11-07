@@ -1,6 +1,8 @@
 import React from 'react';
 
-const Table = ({ payments, className }) => {
+import LocalizedString from './LocalizedString';
+
+const Table = ({ payments, locale, className }) => {
   let output = payments
     .filter((year, i) => i > 0 && (year.balance > 0 || year.interestYearly > 0))
     .reduce(
@@ -24,17 +26,17 @@ const Table = ({ payments, className }) => {
     <table className={className}>
       <thead>
         <tr>
-          <th>Years</th>
-          <th>Interest</th>
-          <th>Overpayment</th>
-          <th>Balance</th>
+          <th>{<LocalizedString id="mortgage_years" locale={locale}/>}</th>
+          <th>{<LocalizedString id="mortgage_interest" locale={locale}/>}</th>
+          <th>{<LocalizedString id="overpayment" locale={locale}/>}</th>
+          <th>{<LocalizedString id="mortgage_balance" locale={locale}/>}</th>
         </tr>
       </thead>
       <tbody>
         {output.rows.map((row, index) => (
           <tr key={index}>
             {row.map((d, i) => (
-              <td key={i}>{d.toLocaleString()}</td>
+              <td key={i}>{d.toLocaleString(locale)}</td>
             ))}
           </tr>
         ))}
@@ -42,9 +44,9 @@ const Table = ({ payments, className }) => {
       <tfoot>
         <tr>
           <td colSpan={2}>
-            {Math.round(output.interestTotal).toLocaleString()}
+            {Math.round(output.interestTotal).toLocaleString(locale)}
           </td>
-          <td>{Math.round(output.overpaymentTotal).toLocaleString()}</td>
+          <td>{Math.round(output.overpaymentTotal).toLocaleString(locale)}</td>
           <td />
         </tr>
       </tfoot>
