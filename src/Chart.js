@@ -49,7 +49,7 @@ const Chart = ({ payments, locale }) => {
       .select('.actual')
       .transition()
       .attr('d', actual(payments));
-  }, [payments]);
+  }, [payments, locale]);
 
   return (
     <svg
