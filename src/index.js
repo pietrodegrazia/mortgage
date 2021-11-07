@@ -10,8 +10,10 @@ import {
   gql
 } from "@apollo/client";
 
+const GRAPHQL_URI = process.env.GRAPHQL_URI || "http://localhost:8080"
+
 const client = new ApolloClient({
-  uri: 'http://localhost:8080',
+  uri: GRAPHQL_URI,
   cache: new InMemoryCache()
 });
 
