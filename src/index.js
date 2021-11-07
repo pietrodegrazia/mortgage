@@ -5,9 +5,7 @@ import App from './App';
 import {
   ApolloClient,
   InMemoryCache,
-  ApolloProvider,
-  useQuery,
-  gql
+  ApolloProvider
 } from "@apollo/client";
 
 const GRAPHQL_URI = process.env.REACT_APP_GRAPHQL_URI || "http://localhost:8080"

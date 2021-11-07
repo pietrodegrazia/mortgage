@@ -24,7 +24,7 @@ const baseline = line()
   .x((d, i) => x(i))
   .y(d => y(d.baseline));
 
-export default ({ payments }) => {
+const Chart = ({ payments }) => {
   const chart = useRef(null);
 
   useEffect(() => {
@@ -65,3 +65,5 @@ export default ({ payments }) => {
     </svg>
   );
 };
+
+export default Chart;

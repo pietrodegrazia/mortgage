@@ -11,7 +11,7 @@ import LocaleSelector from './LocaleSelector';
 const defaultOverpayment = { month: '1', year: '0', amount: '0' };
 const defaultLocale =  navigator.language || navigator.userLanguage || 'en-US';
 
-export default () => {
+const App = () => {
   const [initial, setInitial] = useState('200000');
   const [rate, setRate] = useState('5');
   const [years, setYears] = useState('25');
@@ -157,3 +157,5 @@ export default () => {
     </div>
   );
 };
+
+export default App;

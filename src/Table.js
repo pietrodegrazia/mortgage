@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default ({ payments, className }) => {
+const Table = ({ payments, className }) => {
   let output = payments
     .filter((year, i) => i > 0 && (year.balance > 0 || year.interestYearly > 0))
     .reduce(
@@ -51,3 +51,5 @@ export default ({ payments, className }) => {
     </table>
   );
 };
+
+export default Table;

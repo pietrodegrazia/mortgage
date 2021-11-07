@@ -1,6 +1,4 @@
-import React from 'react';
-
-export default (props) => {
+const LocaleSelector = (props) => {
   return (
     <div className="navbar-locale">
 	    <select
@@ -15,3 +13,5 @@ export default (props) => {
 		</div>
 	);
 };
+
+export default LocaleSelector;

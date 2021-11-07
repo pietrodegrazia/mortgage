@@ -1,11 +1,9 @@
-import React from 'react';
-
 import {
   useQuery,
   gql
 } from "@apollo/client";
 
-export default ({ id, locale }) => {
+const Localized = ({ id, locale }) => {
   const getTranslationQuery = gql`
     query($key: String!, $locale: String!) {
       translation(key: $key, locale: $locale) {
@@ -28,3 +26,5 @@ export default ({ id, locale }) => {
     </span>
   );
 };
+
+export default Localized;
