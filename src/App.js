@@ -8,7 +8,7 @@ import calculate from './calculations';
 import Localized from './Localized';
 
 const defaultOverpayment = { month: '1', year: '0', amount: '0' };
-const defaultLocale = 'en-US';
+const defaultLocale =  navigator.language || navigator.userLanguage || 'en-US';
 
 export default () => {
   const [initial, setInitial] = useState('200000');
