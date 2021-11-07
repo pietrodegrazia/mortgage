@@ -42,8 +42,7 @@ const App = () => {
       <nav className="navbar navbar-default">
         <div className="navbar-header">
           <div className="navbar-brand">{<LocalizedString id="app_name" locale={locale}/>}</div>
-          <LocaleSelector 
-            options={['en-US', 'pt-BR']}
+          <LocaleSelector
             value={locale}
             onChange={(e) => setLocale(e.target.value)}
           />
